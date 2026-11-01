@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\AdminStatus; // 👈 Fixed namespace
+use App\AdminStatus;
 use Database\Factories\AdminFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,6 +32,22 @@ Route::controller(AdminController::class)
         Route::middleware('admin.active')->group(function () {
             Route::get('/dashboard', 'dashboard')->name('adminDashboard');
             Route::get('/logout', 'logout')->name('adminLogout');
+        });
+    });
+
+Route::controller(SellerController::class)
+    ->prefix('seller')
+    ->name('seller.')
+    ->group(function (): void {
+        Route::middleware('seller.guest')->group(function () {
+            Route::get('/login', 'create')->name('sellerCreate');
+            Route::post('/login', 'login')->name('sellerLogin');
+            Route::get('/register', 'register')->name('sellerRegister');
+            Route::post('/register', 'store')->name('sellerStore');
+        });
+        Route::middleware('seller.active')->group(function () {
+            Route::get('/dashboard', 'dashboard')->name('sellerDashboard');
+            Route::get('/logout', 'logout')->name('sellerLogout');
         });
     });
 

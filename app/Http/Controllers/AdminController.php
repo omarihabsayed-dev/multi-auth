@@ -40,7 +40,7 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        return redirect()->route('admin.adminDashboard');
+        return redirect()->route('admin.adminCreate');
     }
 
     public function register()
